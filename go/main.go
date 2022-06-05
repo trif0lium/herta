@@ -14,7 +14,7 @@ func main() {
 		PORT = "1323"
 	}
 	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
+	e.GET("/healthz", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, map[string]bool{
 			"ok": true,
 		})
