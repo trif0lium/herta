@@ -1,4 +1,4 @@
-package videotranscoder
+package main
 
 import (
 	"github.com/trif0lium/herta/go/internal/workflows/videoprocessing"
