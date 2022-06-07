@@ -2,4 +2,7 @@ module github.com/trif0lium/herta/go
 
 go 1.16
 
-require github.com/labstack/echo/v4 v4.7.2
+require (
+	github.com/labstack/echo/v4 v4.7.2
+	go.temporal.io/sdk v1.14.0 // indirect
+)
