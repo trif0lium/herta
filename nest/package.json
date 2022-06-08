@@ -23,6 +23,7 @@
   "dependencies": {
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
+    "@nestjs/microservices": "^8.4.6",
     "@nestjs/platform-express": "^8.0.0",
     "@temporalio/activity": "^0.23.0",
     "@temporalio/client": "^0.23.0",
