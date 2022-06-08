@@ -7,7 +7,7 @@ async function bootstrap() {
   app.connectMicroservice({
     strategy: new TemporalServer({
       workerOptions: {
-        workflowsPath: require.resolve('./search/workflows'),
+        workflowsPath: require.resolve('./calculator/workflows'),
         taskQueue: 'CALCULATOR_TASK_QUEUE'
       }
     })
