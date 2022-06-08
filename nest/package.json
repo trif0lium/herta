@@ -24,10 +24,13 @@
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@temporalio/activity": "^0.23.0",
+    "@temporalio/client": "^0.23.0",
+    "@temporalio/worker": "^0.23.2",
+    "@temporalio/workflow": "^0.23.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0",
-    "temporalio": "^0.23.2"
+    "rxjs": "^7.2.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
