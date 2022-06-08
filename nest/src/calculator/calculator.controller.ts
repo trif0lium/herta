@@ -3,11 +3,11 @@ import { Worker } from '@temporalio/worker'
 
 @Controller('calculator')
 export class CalculatorController {
-  private worker: Worker
+  // private worker: Worker
   async onModuleInit() {
-    this.worker = await Worker.create({
-      taskQueue: 'CALCULATOR_TASK_QUEUE',
-      workflowsPath: require.resolve('./workflows')
-    })
+    // this.worker = await Worker.create({
+    //   taskQueue: 'CALCULATOR_TASK_QUEUE',
+    //   workflowsPath: require.resolve('./workflows')
+    // })
   }
 }
