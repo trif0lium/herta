@@ -1,16 +1,21 @@
 import { CustomTransportStrategy, Server } from '@nestjs/microservices'
-import { Worker } from '@temporalio/worker'
+import { Worker, WorkerOptions } from '@temporalio/worker'
 
-class TemporalServer extends Server implements CustomTransportStrategy {
+export interface TemporalServerOptions {
+  workerOptions: WorkerOptions
+}
+export class TemporalServer extends Server implements CustomTransportStrategy {
   private temporalWorker: Worker
+  private workerOptions: WorkerOptions
 
-  constructor() {
+  constructor(options: TemporalServerOptions) {
     super()
+    this.workerOptions = options.workerOptions
   }
 
   async listen(callback: (...optionalParams: unknown[]) => any) {
     try {
-      this.temporalWorker = await Worker.create({})
+      this.temporalWorker = await Worker.create({ ...this.workerOptions })
       await this.start(callback)
     } catch (err) {
       callback(err)
