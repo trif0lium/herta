@@ -1,4 +1,4 @@
-import { CustomTransportStrategy, Server } from '@nestjs/microservices'
+import { CustomTransportStrategy, MessagePattern, Server } from '@nestjs/microservices'
 import { ActivityInterface } from '@temporalio/activity'
 import { Worker, WorkerOptions } from '@temporalio/worker'
 
@@ -40,4 +40,9 @@ export class TemporalServer extends Server implements CustomTransportStrategy {
   }
 
   close() { }
+}
+export function TemporalActivity(): MethodDecorator {
+  return (target: object, key: string | symbol, descriptor: PropertyDescriptor) => {
+    return MessagePattern({ activityName: descriptor.value })(target, key, descriptor)
+  }
 }
