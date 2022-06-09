@@ -1,4 +1,5 @@
 import { CustomTransportStrategy, Server } from '@nestjs/microservices'
+import { ActivityInterface } from '@temporalio/activity'
 import { Worker, WorkerOptions } from '@temporalio/worker'
 
 export interface TemporalServerOptions {
@@ -14,8 +15,19 @@ export class TemporalServer extends Server implements CustomTransportStrategy {
   }
 
   async listen(callback: (...optionalParams: unknown[]) => any) {
+    const activities: ActivityInterface = {}
+    const messageHandlersKeys = [...this.messageHandlers.keys()]
+    for (const key in messageHandlersKeys) {
+      try {
+        const metadata = JSON.parse(key)
+        if (metadata?.activityName.length > 0) {
+          activities[metadata.activityName] = this.messageHandlers.get(key)
+        }
+      } catch (err) { }
+    }
+
     try {
-      this.temporalWorker = await Worker.create({ ...this.workerOptions })
+      this.temporalWorker = await Worker.create({ ...this.workerOptions, activities })
       await this.start(callback)
     } catch (err) {
       callback(err)
