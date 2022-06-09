@@ -15,4 +15,10 @@ async function bootstrap() {
   await app.startAllMicroservices()
   await app.listen(3001);
 }
-bootstrap();
+
+try {
+  bootstrap();
+} catch (err) {
+  console.log(err);
+  process.exit(1);
+}
