@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/labstack/echo/v4"
-	"github.com/trif0lium/herta/go/internal/workflows/videoprocessing"
 	"go.temporal.io/sdk/client"
 )
 
@@ -23,9 +22,9 @@ func main() {
 	e := echo.New()
 	e.GET("/healthz", func(ctx echo.Context) error {
 		options := client.StartWorkflowOptions{
-			TaskQueue: "TRANSCODING_TASK_QUEUE",
+			TaskQueue: "CALCULATOR_TASK_QUEUE",
 		}
-		_, err := c.ExecuteWorkflow(ctx.Request().Context(), options, videoprocessing.TranscodingWorkflow, videoprocessing.TranscodingJob{})
+		_, err := c.ExecuteWorkflow(ctx.Request().Context(), options, "fibonacciWorkflow", "27")
 		if err != nil {
 			return ctx.JSON(http.StatusOK, map[string]bool{
 				"ok": false,
