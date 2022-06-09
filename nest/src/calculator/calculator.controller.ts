@@ -1,7 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { Payload } from '@nestjs/microservices';
-import { Worker } from '@temporalio/worker'
-import { TemporalActivity } from 'src/temporal/server-temporal';
+import { TemporalActivity } from '../temporal/server-temporal';
 import { CalculatorService } from './calculator.service';
 
 @Controller('calculator')
