@@ -19,5 +19,11 @@ func main() {
 			"ok": true,
 		})
 	})
+	e.GET("/exit", func(c echo.Context) error {
+		os.Exit(1)
+		return c.JSON(http.StatusOK, map[string]bool{
+			"ok": false,
+		})
+	})
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", PORT)))
 }
